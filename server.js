@@ -24,6 +24,21 @@ app.use(Express.json());
 app.use(Cors());
 
 
+app.get('/productos', (req, res) => {
+  console.log('alguien hizo get en la ruta /productos');
+  baseDeDatos
+    .collection('Productos')
+    .find()
+    .limit(50)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(500).send('Error consultando los usuarios');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
 app.post('/producto/nuevo', (req, res) => {
   console.log(req);
   const datosProducto = req.body;
