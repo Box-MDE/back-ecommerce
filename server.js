@@ -39,6 +39,102 @@ app.get('/productos', (req, res) => {
     });
 });
 
+//consultar hogar
+app.get('/productos/hogar', (req, res) => {
+  console.log('alguien hizo get en la ruta /productos/hogar');
+  baseDeDatos
+    .collection('Hogar')
+    .find()
+    .limit(50)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(500).send('Error consultando los usuarios');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+//consultar deportes
+app.get('/productos/deportes', (req, res) => {
+  console.log('alguien hizo get en la ruta /productos/deportes');
+  baseDeDatos
+    .collection('Deportes')
+    .find()
+    .limit(50)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(500).send('Error consultando los usuarios');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+//consultar tecnologia
+app.get('/productos/tecnologia', (req, res) => {
+  console.log('alguien hizo get en la ruta /productos/tecnologia');
+  baseDeDatos
+    .collection('Tecnologia')
+    .find()
+    .limit(50)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(500).send('Error consultando los usuarios');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+//consultar mascotas
+app.get('/productos/mascotas', (req, res) => {
+  console.log('alguien hizo get en la ruta /productos/mascotas');
+  baseDeDatos
+    .collection('Mascotas')
+    .find()
+    .limit(50)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(500).send('Error consultando los usuarios');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+//consultar accesorios
+app.get('/productos/accesorios', (req, res) => {
+  console.log('alguien hizo get en la ruta /productos/accesorios');
+  baseDeDatos
+    .collection('Accesorios')
+    .find()
+    .limit(50)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(500).send('Error consultando los usuarios');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+//consultar vestuario
+app.get('/productos/vestuario', (req, res) => {
+  console.log('alguien hizo get en la ruta /productos/vestuario');
+  baseDeDatos
+    .collection('Vestuario')
+    .find()
+    .limit(50)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(500).send('Error consultando los usuarios');
+      } else {
+        res.json(result);
+      }
+    });
+});
+
 app.post('/producto/nuevo', (req, res) => {
   console.log(req);
   const datosProducto = req.body;
@@ -50,8 +146,181 @@ app.post('/producto/nuevo', (req, res) => {
       Object.keys(datosProducto).includes('descripcion') &&
       Object.keys(datosProducto).includes('url')
     ) {
-      // implementar código para crear vehículo en la BD
       baseDeDatos.collection('Productos').insertOne(datosProducto, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.sendStatus(500);
+        } else {
+          console.log(result);
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      res.sendStatus(500);
+    }
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
+//agregar hogar y jardin
+app.post('/producto/nuevo/hogar', (req, res) => {
+  console.log(req);
+  const datosProducto = req.body;
+  console.log('llaves: ', Object.keys(datosProducto));
+  try {
+    if (
+      Object.keys(datosProducto).includes('titulo') &&
+      Object.keys(datosProducto).includes('precio') &&
+      Object.keys(datosProducto).includes('descripcion') &&
+      Object.keys(datosProducto).includes('url')
+    ) {
+      baseDeDatos.collection('Hogar').insertOne(datosProducto, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.sendStatus(500);
+        } else {
+          console.log(result);
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      res.sendStatus(500);
+    }
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
+//agregar deportes
+app.post('/producto/nuevo/deportes', (req, res) => {
+  console.log(req);
+  const datosProducto = req.body;
+  console.log('llaves: ', Object.keys(datosProducto));
+  try {
+    if (
+      Object.keys(datosProducto).includes('titulo') &&
+      Object.keys(datosProducto).includes('precio') &&
+      Object.keys(datosProducto).includes('descripcion') &&
+      Object.keys(datosProducto).includes('url')
+    ) {
+      baseDeDatos.collection('Deportes').insertOne(datosProducto, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.sendStatus(500);
+        } else {
+          console.log(result);
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      res.sendStatus(500);
+    }
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
+//agregar tecnologia
+app.post('/producto/nuevo/tecnologia', (req, res) => {
+  console.log(req);
+  const datosProducto = req.body;
+  console.log('llaves: ', Object.keys(datosProducto));
+  try {
+    if (
+      Object.keys(datosProducto).includes('titulo') &&
+      Object.keys(datosProducto).includes('precio') &&
+      Object.keys(datosProducto).includes('descripcion') &&
+      Object.keys(datosProducto).includes('url')
+    ) {
+      baseDeDatos.collection('Tecnologia').insertOne(datosProducto, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.sendStatus(500);
+        } else {
+          console.log(result);
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      res.sendStatus(500);
+    }
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
+//agregar mascotas
+app.post('/producto/nuevo/mascotas', (req, res) => {
+  console.log(req);
+  const datosProducto = req.body;
+  console.log('llaves: ', Object.keys(datosProducto));
+  try {
+    if (
+      Object.keys(datosProducto).includes('titulo') &&
+      Object.keys(datosProducto).includes('precio') &&
+      Object.keys(datosProducto).includes('descripcion') &&
+      Object.keys(datosProducto).includes('url')
+    ) {
+      baseDeDatos.collection('Mascotas').insertOne(datosProducto, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.sendStatus(500);
+        } else {
+          console.log(result);
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      res.sendStatus(500);
+    }
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
+//agregar accesorios
+app.post('/producto/nuevo/accesorios', (req, res) => {
+  console.log(req);
+  const datosProducto = req.body;
+  console.log('llaves: ', Object.keys(datosProducto));
+  try {
+    if (
+      Object.keys(datosProducto).includes('titulo') &&
+      Object.keys(datosProducto).includes('precio') &&
+      Object.keys(datosProducto).includes('descripcion') &&
+      Object.keys(datosProducto).includes('url')
+    ) {
+      baseDeDatos.collection('Accesorios').insertOne(datosProducto, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.sendStatus(500);
+        } else {
+          console.log(result);
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      res.sendStatus(500);
+    }
+  } catch {
+    res.sendStatus(500);
+  }
+});
+
+//agregar vestuario
+app.post('/producto/nuevo/vestuario', (req, res) => {
+  console.log(req);
+  const datosProducto = req.body;
+  console.log('llaves: ', Object.keys(datosProducto));
+  try {
+    if (
+      Object.keys(datosProducto).includes('titulo') &&
+      Object.keys(datosProducto).includes('precio') &&
+      Object.keys(datosProducto).includes('descripcion') &&
+      Object.keys(datosProducto).includes('url')
+    ) {
+      baseDeDatos.collection('Vestuario').insertOne(datosProducto, (err, result) => {
         if (err) {
           console.error(err);
           res.sendStatus(500);
