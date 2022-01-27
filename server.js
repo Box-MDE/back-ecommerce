@@ -19,6 +19,7 @@ const client = new MongoClient(stringConexion, {
 let baseDeDatos;
 
 const app = Express();
+const router = Express();
 
 app.use(Express.json());
 app.use(Cors());
@@ -37,6 +38,22 @@ app.get('/productos', (req, res) => {
         res.json(result);
       }
     });
+});
+
+//producto elegido
+app.get('/productos/id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Productos')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
 });
 
 //consultar hogar
