@@ -56,6 +56,102 @@ app.get('/productos/id=:id', (req, res, next) => {
   })
 });
 
+//producto elegido accesorios
+app.get('/productos/accesorios%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Accesorios')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido hogar
+app.get('/productos/hogar%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Hogar')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido mascotas
+app.get('/productos/mascotas%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Mascotas')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido tecnologia
+app.get('/productos/tecnologia%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Tecnologia')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido vestuario
+app.get('/productos/vestuario%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Vestuario')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido deportes
+app.get('/productos/deportes%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Deportes')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
 //consultar hogar
 app.get('/productos/hogar', (req, res) => {
   console.log('alguien hizo get en la ruta /productos/hogar');
