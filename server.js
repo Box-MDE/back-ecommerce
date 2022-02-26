@@ -7,6 +7,9 @@ import dotenv from 'dotenv';
 import jwt from 'express-jwt';
 import jwks from 'jwks-rsa';
 
+import Stripe from 'stripe'
+import sinatra from 'sinatra'
+
 dotenv.config({path: './.env'});
 
 const stringConexion = process.env.DATABASE_URL;
@@ -18,7 +21,10 @@ const client = new MongoClient(stringConexion, {
 
 let baseDeDatos;
 
+const stripe = new Stripe('sk_test_51KT6GAHmlqUgkF45cfD3VQS0Ygswai9c9KmZkE5JXkI2SZ5rGJyNGHSB0wsUFlG3lUtfRfz7UrEBqqXJ0goI0z2100OpfelNiI')
+
 const app = Express();
+const router = Express();
 
 app.use(Express.json());
 app.use(Cors());
@@ -37,6 +43,145 @@ app.get('/productos', (req, res) => {
         res.json(result);
       }
     });
+});
+
+
+//prueba checkout stripe
+app.post('/api/checkout', async (req, res) => {
+
+  const {id, amount} = req.body;
+
+  try{
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "USD",
+      description: "es un shampoo",
+      payment_method: id,
+      confirm: true
+  });
+  console.log(payment)
+  return res.status(200).json({ message: "Successful Payment" });
+  } catch (error) {
+    console.log(error);
+    return res.json({ message: error.raw.message });
+  }
+});
+
+
+
+
+//producto elegido
+app.get('/productos/id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Productos')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+      
+      
+
+//producto elegido accesorios
+app.get('/productos/accesorios%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Accesorios')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido hogar
+app.get('/productos/hogar%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Hogar')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido mascotas
+app.get('/productos/mascotas%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Mascotas')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido tecnologia
+app.get('/productos/tecnologia%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Tecnologia')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido vestuario
+app.get('/productos/vestuario%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Vestuario')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
+});
+
+//producto elegido deportes
+app.get('/productos/deportes%20%id=:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('ID:', id);
+  console.log('alguien hizo get en la ruta', `/producto/${id}`);
+  baseDeDatos
+  .collection('Deportes')
+  .findOne(new ObjectId(id), (err, result) => {
+    if (err){
+      res.status(500).send('Error consultando los usuarios');
+    } else {
+      res.json(result);
+    }
+  })
 });
 
 //consultar hogar
