@@ -89,7 +89,7 @@ app.get('/productos/id=:id', (req, res, next) => {
       
 
 //producto elegido accesorios
-app.get('/productos/accesorios%20%id=:id', (req, res, next) => {
+app.get('/accesorios/id=:id', (req, res, next) => {
   const id = req.params.id;
   console.log('ID:', id);
   console.log('alguien hizo get en la ruta', `/producto/${id}`);
@@ -105,7 +105,7 @@ app.get('/productos/accesorios%20%id=:id', (req, res, next) => {
 });
 
 //producto elegido hogar
-app.get('/productos/hogar%20%id=:id', (req, res, next) => {
+app.get('/hogar/id=:id', (req, res, next) => {
   const id = req.params.id;
   console.log('ID:', id);
   console.log('alguien hizo get en la ruta', `/producto/${id}`);
@@ -121,7 +121,7 @@ app.get('/productos/hogar%20%id=:id', (req, res, next) => {
 });
 
 //producto elegido mascotas
-app.get('/productos/mascotas%20%id=:id', (req, res, next) => {
+app.get('/mascotas/id=:id', (req, res, next) => {
   const id = req.params.id;
   console.log('ID:', id);
   console.log('alguien hizo get en la ruta', `/producto/${id}`);
@@ -137,7 +137,7 @@ app.get('/productos/mascotas%20%id=:id', (req, res, next) => {
 });
 
 //producto elegido tecnologia
-app.get('/productos/tecnologia%20%id=:id', (req, res, next) => {
+app.get('/tecnologia/id=:id', (req, res, next) => {
   const id = req.params.id;
   console.log('ID:', id);
   console.log('alguien hizo get en la ruta', `/producto/${id}`);
@@ -153,7 +153,7 @@ app.get('/productos/tecnologia%20%id=:id', (req, res, next) => {
 });
 
 //producto elegido vestuario
-app.get('/productos/vestuario%20%id=:id', (req, res, next) => {
+app.get('/vestuario/id=:id', (req, res, next) => {
   const id = req.params.id;
   console.log('ID:', id);
   console.log('alguien hizo get en la ruta', `/producto/${id}`);
@@ -169,7 +169,7 @@ app.get('/productos/vestuario%20%id=:id', (req, res, next) => {
 });
 
 //producto elegido deportes
-app.get('/productos/deportes%20%id=:id', (req, res, next) => {
+app.get('/deportes/id=:id', (req, res, next) => {
   const id = req.params.id;
   console.log('ID:', id);
   console.log('alguien hizo get en la ruta', `/producto/${id}`);
